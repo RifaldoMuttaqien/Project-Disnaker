@@ -9,7 +9,7 @@
 
 ## About Laravel
 
-Judul Project : Sistem E - Ticket Pengaduan 
+Judul Project : Sistem E - Ticket Pengaduan<br/> 
 Bisnis Proses : Aplikasi Pengaduan dapat melakukan proses data pengaduan yang akan di input.<br/>
 Detail : Sistem E Ticket Pengaduan berguna bagi instansi Kelurahan / Pemerintahan Setempat untuk memudahkan user atau warga melakukan proses pengaduan.
 
