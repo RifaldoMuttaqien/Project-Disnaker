@@ -11,6 +11,8 @@
 
 Judul Project : Sistem E - Ticket Pengaduan<br/> 
 Bisnis Proses : Aplikasi Pengaduan dapat melakukan proses data pengaduan yang akan di input.<br/>
-Detail : Sistem E Ticket Pengaduan berguna bagi instansi Kelurahan / Pemerintahan Setempat untuk memudahkan user atau warga melakukan proses pengaduan.
+Detail : Sistem E Ticket Pengaduan berguna bagi instansi Kelurahan / Pemerintahan Setempat untuk memudahkan  warga melakukan proses pengaduan.
+Alur Kerja : Pengguna -> Masuk Website -> Pengguna klik navbar pengaduan -> melakukan input pengaduan -> pengaduan diterima
+              Admin -> Pengaduan diterima ->
 
 Proses Sitem berjalan Memiliki Actor Hak Akses user Admin dan User Pengguna.
