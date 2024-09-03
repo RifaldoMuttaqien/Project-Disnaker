@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PengaduResouce extends JsonResource
+class APIResource extends JsonResource
 {
     public $status;
     public $message;

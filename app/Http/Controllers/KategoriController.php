@@ -1,21 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Resources\APIResource;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
-class PengaduController extends Controller
+use App\Models\Kategori;
+use App\Http\Requests\StoreKategoriRequest;
+use App\Http\Requests\UpdateKategoriRequest;
+
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //menampilkan data
-        $pengadu = DB::table('pengadu')->get();
-
-        return new APIResource(true, 'Data Pengadu', $pengadu);
+        //
     }
 
     /**
@@ -29,7 +27,7 @@ class PengaduController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreKategoriRequest $request)
     {
         //
     }
@@ -37,7 +35,7 @@ class PengaduController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Kategori $kategori)
     {
         //
     }
@@ -45,7 +43,7 @@ class PengaduController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Kategori $kategori)
     {
         //
     }
@@ -53,7 +51,7 @@ class PengaduController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateKategoriRequest $request, Kategori $kategori)
     {
         //
     }
@@ -61,7 +59,7 @@ class PengaduController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Kategori $kategori)
     {
         //
     }

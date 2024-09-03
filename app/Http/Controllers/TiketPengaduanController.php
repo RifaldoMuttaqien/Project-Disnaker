@@ -1,21 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Resources\APIResource;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
-class PengaduController extends Controller
+use App\Http\Resources\APIResource;
+use App\Models\TiketPengaduan;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreTiketPengaduanRequest;
+use App\Http\Requests\UpdateTiketPengaduanRequest;
+
+class TiketPengaduanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //menampilkan data
-        $pengadu = DB::table('pengadu')->get();
+        //
+        $tiketPengaduan = DB::table("tiket_pengaduan")->get();
 
-        return new APIResource(true, 'Data Pengadu', $pengadu);
+        return new APIResource(true, 'Data Tiket Pengaduan', $tiketPengaduan);
     }
 
     /**
@@ -29,7 +32,7 @@ class PengaduController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTiketPengaduanRequest $request)
     {
         //
     }
@@ -37,7 +40,7 @@ class PengaduController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(TiketPengaduan $tiketPengaduan)
     {
         //
     }
@@ -45,7 +48,7 @@ class PengaduController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(TiketPengaduan $tiketPengaduan)
     {
         //
     }
@@ -53,7 +56,7 @@ class PengaduController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTiketPengaduanRequest $request, TiketPengaduan $tiketPengaduan)
     {
         //
     }
@@ -61,7 +64,7 @@ class PengaduController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(TiketPengaduan $tiketPengaduan)
     {
         //
     }
