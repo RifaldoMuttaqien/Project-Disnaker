@@ -12,6 +12,7 @@
 
 <h2>INPUT COMMAND INI PAS BARU CLONE GIT:</h2>
 
+```
 <ul>
     <li>```
         composer install
@@ -32,6 +33,7 @@
         php artisan serve ==> Nanti buka link yang dikasih pas running ini, jangan di exit selama masih make
     ```</li>
 </ul>
+```
 
 ## API TEST
 http://127.0.0.1:8000/api/pengadu => /Pengadu
