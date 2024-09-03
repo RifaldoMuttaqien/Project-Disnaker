@@ -12,27 +12,18 @@
 
 <h2>INPUT COMMAND INI PAS BARU CLONE GIT:</h2>
 
-```
-<ul>
-    <li>```
-        composer install
-    ```</li>
-    <li>```
-        php artisan key:generate
-    ```</li>
-    <li>```
-        php artisan install:api
-    ```</li>
-    <li>```
-        php artisan migrate || php artisan migrate:fresh (kalo yang kiri gabisa)
-    ```</li>
-    <li>```
-        npm run dev ==> jangan di exit selama masih make
-    ```</li>
-    <li>```
-        php artisan serve ==> Nanti buka link yang dikasih pas running ini, jangan di exit selama masih make
-    ```</li>
-</ul>
+```php
+        - composer install
+
+        - php artisan key:generate
+
+        - php artisan install:api
+
+        - php artisan migrate || php artisan migrate:fresh (kalo yang kiri gabisa)
+ 
+        - npm run dev ==> jangan di exit selama masih make
+
+        - php artisan serve ==> Nanti buka link yang dikasih pas running ini, jangan di exit selama masih mak
 ```
 
 ## API TEST
