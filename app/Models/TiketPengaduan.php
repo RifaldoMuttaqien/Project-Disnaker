@@ -10,6 +10,6 @@ class TiketPengaduan extends Model
     use HasFactory;
 
     protected $table = 'tiket_pengaduan';
-    protected $fillable = ['body', 'status','tgl_awal','tgl_akhir','kategori_id'];
-    public $timestamp = false;
+    protected $fillable = ['body', 'ticket', 'lampiran','tgl_awal','tgl_akhir','kategori_id', 'pengadu_id'];
+    public $timestamps = false;
 }

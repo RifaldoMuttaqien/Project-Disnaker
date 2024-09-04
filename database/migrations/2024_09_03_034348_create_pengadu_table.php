@@ -14,10 +14,9 @@ return new class extends Migration
     {
         Schema::create('pengadu', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('nik')->unique();
             $table->string('name');
-            $table->integer('nik')->unique();
-            $table->integer('no_wa')->unique();
-            
+            $table->string('no_wa')->unique();
         });
     }
 

@@ -10,6 +10,6 @@ class Tanggapan extends Model
     use HasFactory;
 
     protected $table = 'tanggapan';
-    protected $fillable = ['body', 'pengaduan_id'];
-    public $timestamp = false;
+    protected $fillable = ['tanggapan', 'status', 'lampiran', 'tiket_pengaduan_id'];
+    public $timestamps = false;
 }

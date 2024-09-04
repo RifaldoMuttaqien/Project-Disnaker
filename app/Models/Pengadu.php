@@ -10,6 +10,6 @@ class Pengadu extends Model
     use HasFactory;
 
     protected $table = 'pengadu';
-    protected $fillabel = ['nik', 'name', 'no_wa', 'tiket_id', 'pengaduan_id'];
-    public $timestamp = false;
+    protected $fillabel = ['nik', 'name', 'no_wa'];
+    public $timestamps = false;
 }

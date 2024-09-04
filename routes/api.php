@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APIController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PengaduController;
 use App\Http\Controllers\TiketPengaduanController;
@@ -10,5 +11,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
  
 
-Route::get('/pengadu', [PengaduController::class, 'index']);
-Route::get('/tiket', [TiketPengaduanController::class, 'index']);
+Route::get('/pengadu', [APIController::class, 'pengaduAPI']);
+Route::get('/tiket', [APIController::class, 'tiketAPI']);

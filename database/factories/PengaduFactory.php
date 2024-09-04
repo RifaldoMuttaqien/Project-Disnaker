@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Kategori>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pengadu>
  */
-class KategoriFactory extends Factory
+class PengaduFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,9 @@ class KategoriFactory extends Factory
     {
         return [
             //
-            
+            "nik" => fake()->unique()->numberBetween(1000000, 9999999),
+            "name" => fake()->name(),
+            "no_wa" => fake()->unique()->phoneNumber(),
         ];
     }
 }

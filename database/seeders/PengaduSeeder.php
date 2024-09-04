@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\TiketPengaduan;
+use App\Models\Pengadu;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class TiketPengaduanSeeder extends Seeder
+class PengaduSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class TiketPengaduanSeeder extends Seeder
     public function run(): void
     {
         //
-        TiketPengaduan::factory(10)->create();
+        Pengadu::factory(7)->create();
     }
 }

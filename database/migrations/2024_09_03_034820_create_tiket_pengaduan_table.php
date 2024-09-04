@@ -14,10 +14,9 @@ return new class extends Migration
     {
         Schema::create('tiket_pengaduan', function (Blueprint $table) {
             $table->id();
-            $table->string('ticket')->unique();
+            $table->string('ticket')->unique()->default('');
             $table->text('body');
             $table->string('lampiran')->nullable();
-            $table->enum('status', ['Pending','Proses','Ditolak','Selesai'])->default('Pending');
             $table->date('tgl_awal')->default(Date::now());
             $table->date('tgl_akhir')->nullable();
         });

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Kategori;
+use App\Models\Pengadu;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +20,11 @@ class TiketPengaduanFactory extends Factory
     {
         return [
             //
+            "ticket"=> fake()->uuid(),
+            "body" => fake()->sentence(),
+            "lampiran" => fake()->imageUrl(),
+            "pengadu_id" => Pengadu::inRandomOrder()->first()->id,
+            "kategori_id" => Kategori::inRandomOrder()->first()->id,
         ];
     }
 }

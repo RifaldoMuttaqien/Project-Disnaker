@@ -28,13 +28,13 @@ return new class extends Migration
     public function down(): void
     {
 
-        Schema::table('tiket_pengaduan', function (Blueprint $table) {
-            $table->dropColumn('pengadu_id');
-            $table->dropColumn('kategori_id');
-        });
+        // Schema::table('tiket_pengaduan', function (Blueprint $table) {
+        //     $table->dropColumn('pengadu_id');
+        //     $table->dropColumn('kategori_id');
+        // });
 
-        Schema::table('tanggapan', function (Blueprint $table) {
-            $table->dropColumn('tiket_pengaduan_id');
-        });
+        // Schema::table('tanggapan', function (Blueprint $table) {
+        //     $table->dropColumn('tiket_pengaduan_id');
+        // });
     }
 };

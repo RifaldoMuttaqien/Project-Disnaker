@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('tanggapan', function (Blueprint $table) {
             $table->id();
-            $table->text('body')->nullable();
+            $table->text('tanggapan')->nullable();
+            $table->enum('status', ['Pending','Proses','Ditolak','Selesai'])->default('Pending');
+            $table->string('lampiran')->nullable();
         });
     }
 

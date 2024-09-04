@@ -11,5 +11,5 @@ class Kategori extends Model
 
     protected $table = 'kategori';
     protected $fillable = ['kategori'];
-    public $timestamp = false;
+    public $timestamps = false;
 }

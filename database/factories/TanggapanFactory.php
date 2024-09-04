@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\TiketPengaduan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,15 @@ class TanggapanFactory extends Factory
      */
     public function definition(): array
     {
+
+        $status = ['Pending', 'Proses', 'Ditolak', 'Selesai'];
+        static $tiketId = 1;
+
         return [
-            //
+            "tanggapan" => fake()->sentence(),
+            "status" => fake()->randomElement($status),
+            "lampiran" => fake()->url(),
+            "tiket_pengaduan_id" => $tiketId++,
         ];
     }
 }
