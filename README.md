@@ -8,21 +8,26 @@
 </p>
 
 <h1>FILE .evn.example hapus .examplenya, jadi .env aja</h1>
-<h1>NOTE: nama dbnya etiket_pengaduan, pakai mysql jangan sqlite</h1>
+<h2>NOTE: nama dbnya etiket_pengaduan, pakai mysql jangan sqlite</h2>
 
 <h2>INPUT COMMAND INI PAS BARU CLONE GIT:</h2>
 
-```php
+```
         - composer install
-
+```
+```
         - php artisan key:generate
-
+```
+```
         - php artisan install:api
-
-        - php artisan migrate || php artisan migrate:fresh (kalo yang kiri gabisa)
- 
+```
+```
+        - php artisan migrate --seed || php artisan migrate:fresh --seed (kalo yang kiri gabisa)
+```
+```
         - npm run dev ==> jangan di exit selama masih make
-
+```
+```
         - php artisan serve ==> Nanti buka link yang dikasih pas running ini, jangan di exit selama masih mak
 ```
 
