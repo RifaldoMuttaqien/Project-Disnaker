@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\APIResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PengaduController extends Controller
 {
@@ -32,6 +33,35 @@ class PengaduController extends Controller
     public function store(Request $request)
     {
         //
+        $valid = Validator::make($request->all(), [
+            'name' => 'required|min:5|string',
+            'nik' => 'required|integer|unique:pengadu,nik',
+            'no_wa' => 'required|unique:pengadu,no_wa',
+        ]);
+
+        if ($valid->fails()) {
+            return response()->json([$valid->errors(), 422]);
+        }
+
+        $insert = DB::table('pengadu')->insert([
+            'name' => $request->name,
+            'nik' => $request->nik,
+            'no_wa' => $request->no_wa,
+        ]);
+
+        return new APIResource(
+            true,
+            'Data Pengadu Ditambahkan',
+            [
+                'Data yang Ditambahkan : ' =>
+                [
+                    'name' => $request->name,
+                    'nik' => $request->nik,
+                    'no_wa' => $request->no_wa,
+                ],
+                'Status' => $insert,
+            ]
+        );
     }
 
     /**
@@ -40,6 +70,9 @@ class PengaduController extends Controller
     public function show(string $id)
     {
         //
+        $show = DB::table('pengadu')->where('id', $id)->get();
+
+        return new APIResource(true,'Data Terpilih Pengadu', $show);
     }
 
     /**
@@ -56,6 +89,32 @@ class PengaduController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $valid = Validator::make($request->all(), [
+            'name'=> 'required|min:5|string',
+            'nik'=> 'required|integer|unique:pengadu,nik',
+            'no_wa'=> 'required|unique:pengadu,no_wa',
+        ]);
+
+        if ($valid->fails()) {
+            return response()->json([$valid->errors(), 422]);
+        }
+
+        $update = DB::table('pengadu')->where('id',$id)->update([
+            'name'=> $request->name,
+            'nik'=> $request->nik,
+            'no_wa'=> $request->no_wa,
+        ]);
+
+        return new APIResource(true, 'Data Pengadu Berhasil Diubah', 
+    [
+        'Data Terubah : ' => 
+        [   'name'=> $request->name,
+            'nik'=> $request->nik,
+            'no_wa'=> $request->no_wa,
+        ],
+        'Status' => $update,
+    ]);
+
     }
 
     /**
@@ -64,5 +123,13 @@ class PengaduController extends Controller
     public function destroy(string $id)
     {
         //
+        $willDelete = DB::table('pengadu')->where('id', $id)->get();
+        $delete = DB::table('pengadu')->where('id', $id)->delete();
+
+        return new APIResource(true,'Data Pengadu Dihapus', 
+        [
+            'Data yang Dihapus' => $willDelete,
+            'Status' => $delete
+        ]);
     }
 }

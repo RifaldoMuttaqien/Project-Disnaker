@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tanggapan;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\APIResource;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTanggapanRequest;
 use App\Http\Requests\UpdateTanggapanRequest;
 
@@ -14,6 +17,9 @@ class TanggapanController extends Controller
     public function index()
     {
         //
+        $tanggapan = DB::table('tanggapan')->get();
+
+        return new APIResource(true,'Data Tanggapan', $tanggapan);
     }
 
     /**

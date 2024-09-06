@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\APIResource;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreKategoriRequest;
 use App\Http\Requests\UpdateKategoriRequest;
 
@@ -14,6 +17,9 @@ class KategoriController extends Controller
     public function index()
     {
         //
+        $kategori = DB::table('kategori')->get();
+
+        return new APIResource(true,'Data Kategori', $kategori);
     }
 
     /**

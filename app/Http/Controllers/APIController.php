@@ -28,6 +28,18 @@ class APIController extends Controller
         return new APIResource(true, 'Data Pengadu', $pengadu);
     }
 
+    public function tanggapanAPI(){
+        $tanggapan = DB::table('tanggapan')->get();
+
+        return new APIResource(true,'Data Tanggapan', $tanggapan);
+    }
+
+    public function katerogiAPI(){
+        $kategori = DB::table('kategori')->get();
+
+        return new APIResource(true,'Data Kategori', $kategori);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
