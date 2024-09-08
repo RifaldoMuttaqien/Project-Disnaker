@@ -11,7 +11,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
- 
+
+
+
+
+
+
+Route::post('/tambah_tiket', [APIController::class, 'pengaduanBaru']);
+Route::post('/update_tanggapan/{id}', [APIController::class, 'ubahTanggapan']);
+Route::post('/cari_tiket', [APIController::class, 'cariTiket']);
+Route::post('/cari_user', [APIController::class, 'cariPengadu']);
+Route::get('/semua_data', [APIController::class,'tampilData']);
+Route::get('/ambil_data/{id}', [APIController::class,'ambilTanggapan']);
+
 
 Route::get('/pengadu', [PengaduController::class, 'index']);
 Route::get('/show_pengadu/{id}', [PengaduController::class, 'show']);

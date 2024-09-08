@@ -38,11 +38,13 @@ class TanggapanController extends Controller
     public function store(StoreTanggapanRequest $request)
     {
         //
+        $enum = ['Pending','Proses','Ditolak','Selesai'];
+
         $valid = Validator::make($request->all(), [
             'tanggapan'=> 'nullable|string',
             'status'=> [
                 'required|',
-                Rule::enum('Pending','Proses','Ditolak','Selesai')
+                Rule::in($enum),
             ], 
             'lampiran' => '',
             'tiket_pengaduan_id'=> 'required|unique',
