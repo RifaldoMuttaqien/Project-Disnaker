@@ -6,9 +6,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
-
-## About Laravel
-
 Judul Project : Sistem E - Ticket Pengaduan<br/> 
 Bisnis Proses : Aplikasi Pengaduan dapat melakukan proses data pengaduan yang akan di input.<br/>
 Detail : Sistem E Ticket Pengaduan berguna bagi instansi Kelurahan / Pemerintahan Setempat untuk memudahkan  warga melakukan proses pengaduan.
@@ -16,3 +13,35 @@ Alur Kerja : Pengguna -> Masuk Website -> Pengguna klik navbar pengaduan -> mela
               Admin -> Pengaduan diterima ->
 
 Proses Sitem berjalan Memiliki Actor Hak Akses user Admin dan User Pengguna.
+</p>
+
+<h1>FILE .evn.example hapus .examplenya, jadi .env aja</h1>
+<h2>NOTE: nama dbnya etiket_pengaduan, pakai mysql jangan sqlite</h2>
+
+<h2>INPUT COMMAND INI PAS BARU CLONE GIT:</h2>
+
+```
+        - composer install
+```
+```
+        - php artisan key:generate
+```
+```
+        - php artisan install:api
+```
+```
+        - php artisan migrate --seed || php artisan migrate:fresh --seed (kalo yang kiri gabisa)
+```
+```
+        - npm run dev ==> jangan di exit selama masih make
+```
+```
+        - php artisan serve ==> Nanti buka link yang dikasih pas running ini, jangan di exit selama masih mak
+```
+
+## API TEST
+http://127.0.0.1:8000/api/pengadu => /Pengadu
+
+http://127.0.0.1:8000/api/tiket => /Tiket Pengaduan
+
+
