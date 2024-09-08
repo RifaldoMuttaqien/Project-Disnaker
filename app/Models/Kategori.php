@@ -8,14 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Kategori extends Model
 {
     use HasFactory;
-    
 
-    
     protected $table = 'kategori';
-    protected $timesamps = false;
-
-    public function pengaduans()
-    {
-        return $this->hasMany(Pengaduan::class, 'kategori_id');
-    }
+    protected $fillable = ['kategori'];
+    public $timestamps = false;
 }
