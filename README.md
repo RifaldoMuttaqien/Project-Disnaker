@@ -41,6 +41,11 @@ Proses Sitem berjalan Memiliki Actor Hak Akses user Admin dan User Pengguna.
 ```
 
 ## API TEST
-LAGI DIBUAT!!!
+- http://127.0.0.1:8000/api/tambah_tiket => buat nambah tiket pengaduan baru
+- http://127.0.0.1:8000/api/update_tanggapan/{id} => ngubah tanggapan (buat admin)
+- http://127.0.0.1:8000/api/cari_tiket => nyari data pake nomor tiket
+- http://127.0.0.1:8000/api/cari_user => nyari user pake nik
+- http://127.0.0.1:8000/api/semua_data => ambil semua data tiket, buat pagination?
+- http://127.0.0.1:8000/api/ambil_data/{id} => ambil data tanggapan, buat ngedit
 
-
+sisanya OTW (mungkin)
