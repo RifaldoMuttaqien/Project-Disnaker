@@ -27,6 +27,8 @@ Route::delete('/delete_tiket/{id}', [TiketPengaduanController::class, 'destroy']
 
 
 Route::get('/tanggapan', [TanggapanController::class, 'index']);
+Route::get('/show_tanggapan/{id}', [TanggapanController::class, 'show']);
+Route::post('/create_tanggapan', [TanggapanController::class,'store']);
 
 
 Route::get('/kategori', [KategoriController::class, 'index']);
