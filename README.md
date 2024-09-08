@@ -33,6 +33,7 @@ Proses Sitem berjalan Memiliki Actor Hak Akses user Admin dan User Pengguna.
         - php artisan migrate --seed || php artisan migrate:fresh --seed (kalo yang kiri gabisa)
 ```
 ```
+        - npm run || npm start
         - npm run dev ==> jangan di exit selama masih make
 ```
 ```
@@ -40,8 +41,6 @@ Proses Sitem berjalan Memiliki Actor Hak Akses user Admin dan User Pengguna.
 ```
 
 ## API TEST
-http://127.0.0.1:8000/api/pengadu => /Pengadu
-
-http://127.0.0.1:8000/api/tiket => /Tiket Pengaduan
+LAGI DIBUAT!!!
 
 
