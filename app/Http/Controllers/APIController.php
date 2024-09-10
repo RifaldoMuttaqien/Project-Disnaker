@@ -107,9 +107,9 @@ class APIController extends Controller
     public function tampilData(){
 
         $show = DB::table('tiket_pengaduan')
-        ->join('pengadu','tiket_pengaduan.id','=','pengadu.id')
-        ->join('kategori','tiket_pengaduan.id','=','kategori.id')
-        ->join('tanggapan','tiket_pengaduan.id','=','tanggapan.tiket_pengaduan_id')
+        ->leftJoin('pengadu','tiket_pengaduan.pengadu_id','=','pengadu.id')
+        ->leftJoin('kategori','tiket_pengaduan.kategori_id','=','kategori.id')
+        ->leftJoin('tanggapan','tiket_pengaduan.id','=','tanggapan.tiket_pengaduan_id')
         ->select('tiket_pengaduan.*',  'pengadu.name as pengadu_id', 'kategori.kategori as kategori_id')
         ->get();
 
