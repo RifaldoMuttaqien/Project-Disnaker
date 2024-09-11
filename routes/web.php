@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\dataPengaduanController;
+use App\Http\Controllers\PengaduController;
+use App\Http\Controllers\PengaduTampilController;
 use App\Http\Controllers\ProgressPengaduanController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +20,9 @@ Route::resource('/datapengaduan', dataPengaduanController::class);
 Route::get('/progress-pengaduan', [ProgressPengaduanController::class, 'index'])->name('progressPengaduan.index');
 Route::get('/progress-pengaduan/{id}/progress', [ProgressPengaduanController::class, 'progress'])->name('datapengaduan.progress');
 
+// Route Dashboard yang terhubung API APIP
+Route::resource('pengadutampil', PengaduTampilController::class);
+Route::get('/dashboard', [PengaduTampilController::class, 'index'])->name('dashboard.index');
 
 
 
