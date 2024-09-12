@@ -150,7 +150,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Content Header (Page header) -->
                 <div class="col-sm-12 ">
                     <br/>
-                    <h1 class="m-0" style="text-align: center; ">Data Pengadu Masuk</h1>
+                    <h1 class="m-0" style="text-align: center; ">Data Pengadu Masuk <br/> <?php $date = new DateTime(); echo $date->format(' d / m / Y') ?></h1>
                 </div><!-- /.col -->
                 <!-- /.content-header -->
 
@@ -221,7 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Anything you want
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; <a href="https://adminlte.io">Kelompok 5</a>.</strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->

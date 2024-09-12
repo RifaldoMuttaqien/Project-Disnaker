@@ -23,6 +23,7 @@ Route::get('/progress-pengaduan/{id}/progress', [ProgressPengaduanController::cl
 // Route Dashboard yang terhubung API APIP
 Route::resource('pengadutampil', PengaduTampilController::class);
 Route::get('/dashboard', [PengaduTampilController::class, 'index'])->name('dashboard.index');
+Route::get('/create', [PengaduTampilController::class, 'create'])->name('dashboard.create');
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Pengadu;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class PengaduTampilController extends Controller
@@ -21,13 +22,14 @@ class PengaduTampilController extends Controller
      */
     public function create()
     {
-        //
+        //nampilan form
+        return view('dashboard.view');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function show(Request $request)
     {
         //
     }
@@ -35,9 +37,21 @@ class PengaduTampilController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function store(Request $request): RedirectResponse
     {
         //
+        $request->validate([
+            'nik' => 'required',
+            'name' => 'required',
+            'no_wa' => 'required',
+        ]);
+
+        Pengadu::create([
+            'nik' => $request->nik,
+            'name' => $request->name,
+            'no_wa' => $request->no_wa,
+        ]);
+        return redirect()->route('dashboard.create')->with(['success' => 'Data Berhasil disimpan']);
     }
 
     /**
