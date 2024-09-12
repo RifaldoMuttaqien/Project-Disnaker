@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pengaduan</title>
+    <style>
+body {
+    font-family: ;Arial, sans-serif;
+    margin: 20px;
+}
+form {
+    max-width: 400px;
+    margin:auto;
+    padding: 20px;
+    border: 1px, solid #acc;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px grey;
+    width: 400px;
+    }
+label {
+    display:block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+    input, textarea, select {
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 10px;
+    border: 1px, solid #acc;
+    border-radius: 5px;
+    
+    }
+    button {
+        padding: 10px, 20px;
+        background-color: #ac3972;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #886721;
+    }
+
+    </style>
+</head>
+<body>
+    <h2> Form Pengaduan Kelurahan</h2>
+    <form action="submit_pengaduan.php" method="post">
+        <label for="nama">Nama lengkap</label><br>
+        <input for="text" id="nama" name="nama" placeholder="Masukan nama anda" required>
+
+        <label for="alamat">Alamat:</label><br>
+        <input type="text" id="alamat" name="alamat" placeholder="Masukan alamat anda" required>
+
+        <label for="email">Email</label><br>
+        <input type="email" id="email" name="email" placeholder="Masukan email anda" required>
+
+        <label for="kategori">Kategori Pengaduan</label><br>
+        <select id="kategori" name="kategori"required>
+            <option value="">--Pilih Kategori</option>
+            <option value="--Infrastruktur">Infrastruktur</option>
+            <option value="Kesehatan">Kesehatan</option>
+            <option value="administrasi">administrasi</option>
+            <option value="lainnya">lainnya</option>
+        </select>
+
+        <label for="Pengaduan">Deskripsi Pengaduan</label><br>
+        <textarea id="Pengaduan" name="Pengaduan" rows="4" placeholder="Jelaskan Pengaduan anda disini..." required></textarea><textarea>
+
+            <button type="submit" onclick="alert('Data berhasil dikirim')">Kirim Pengaduan</button>
+        
+
+        
+       
+</body>
+</html>
