@@ -12,4 +12,6 @@ class TiketPengaduan extends Model
     protected $table = 'tiket_pengaduan';
     protected $fillable = ['body', 'ticket', 'lampiran','tgl_awal','tgl_akhir','kategori_id', 'pengadu_id'];
     public $timestamps = false;
+
+    
 }

@@ -167,27 +167,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <tr>
                                             <th scope="col">No Handphone</th>
                                             <th scope="col">Nama</th>
-                                            <th scope="col">Foto</th>
-                                            <th scope="col">Tanggal</th>
-                                            <th scope="col">Pesan</th>
-                                            <th scope="col">Kategori</th>
+                                            <th scope="col">Lampiran</th>
+                                            <th scope="col">Tanggal Dibuat</th>
+                                            <th scope="col">Tanggal Selesai</th>
+                                            <th scope="col">Kategori Pengaduan</th>
+                                            <th scope="col">Isi Pengaduan</th>
                                             <th scope="col" style="width: 18%">ACTIONS</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse  ($data_pengaduans as $dataPengaduan)
                                         <tr>
+                                        {{ dd($dataPengaduan[no_wa]) }}
                                            
-                                            <td>{{ $dataPengaduan->no_handphone}}</td>
-                                            <td>{{ $dataPengaduan->nama}}</td>
+                                            <td>{{ $dataPengaduan->no_wa}}</td>
+                                            <td>{{ $dataPengaduan->pengadu_id}}</td>
                                             <td class="text-center">
                                             <a href="{{ asset('storage/datapengaduan1/'.$dataPengaduan->foto) }}">
                                             <img src="{{ asset('storage/datapengaduan1/'.$dataPengaduan->foto) }}" class="rounded" style="width: 100px;" alt="">
                                             </a>
                                             </td>
-                                            <td>{{ $dataPengaduan->tgl}}</td>
+                                            <td>{{ $dataPengaduan->tgl_awal}}</td>
+                                            <td>{{ $dataPengaduan->tgl_akhir}}</td>
+                                            <td>{{ $dataPengaduan->kategori_id}}</td>
                                             <td>{{ $dataPengaduan->body}}</td>
-                                            <td>{{ $dataPengaduan->kategori->nama}}</td>
 
                                             <td class="text-center">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('datapengaduan.destroy', $dataPengaduan->id) }}" method="POST">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\dataPengaduan;
 use App\Models\Kategori;
+use App\Models\Tanggapan;
+use App\Models\TiketPengaduan;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,9 +18,11 @@ class dataPengaduanController extends Controller
     public function index() : View
     {
         //
+        $controllerAPI = new APIController();
         
-        $data_pengaduans = dataPengaduan::with('kategori')->where('status', 'pending')->latest()->paginate(10);
+        $data_pengaduans = $controllerAPI->tampilData();
         return view('datapengaduan.index', compact('data_pengaduans'));
+        // dd($data_pengaduans);
     }
 
     /**
@@ -100,6 +104,5 @@ class dataPengaduanController extends Controller
         $data_pengaduans->delete();
 
         return redirect()->route('datapengaduan.index')->with(['Success' => 'Data Berhasil di hapus']);
-
     }
 }
