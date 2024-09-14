@@ -52,6 +52,8 @@ class PengaduTampilController extends Controller
             'no_wa' => $request->no_wa,
         ]);
         return redirect()->route('dashboard.create')->with(['success' => 'Data Berhasil disimpan']);
+        return response()->json($pengadu, 201);
+
     }
 
     /**
