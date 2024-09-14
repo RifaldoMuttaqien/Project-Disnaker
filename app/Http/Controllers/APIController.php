@@ -12,37 +12,55 @@ class APIController extends Controller
     /**
      * Display a listing of the resource.
      */
+    private $userId = 0;
+
+
     public function index()
     {
         //
     }
 
+    // ini buat pas bikin tiket pengaduan baru
     public function pengaduanBaru(Request $request)
     {
-        $tiket = DB::table("tiket_pengaduan")->insert([
+
+
+        // persiapan data yang PASTI bakal dipake
+        $data = [
             'ticket' => fake()->uuid(),
-            'body' => $request->pengaduan,
+            'body' => $request->body,
             'lampiran'=> $request->lampiran,
-            'pengadu_id'=> $request->pengadu_id,
             'kategori_id'=> $request->kategori_id,
-        ]);
-        $tanggapan = DB::table("tanggapan")->insert([
+        ];
+
+        //cek, usernya udah ada apa belom
+        if (DB::table('pengadu')->where('nik', $request->nik)->exists()) 
+        { // kalo udah, ambil id si user ini
+            $data['pengadu_id'] = DB::table('pengadu')->where('nik',$request->nik)->first()->id;
+        }
+        else 
+        {  //kalo belom, bikin baru
+            DB::table('pengadu')->insert([
+                'name'=> $request->nama,
+                'nik' => $request->nik,
+                'no_wa' => $request->no_wa,
+            ]);
+            $data['pengadu_id'] = DB::table('pengadu')->latest('id')->first()->id;
+        }
+
+        // query nambahin data baru buat pengaduan sama tanggapan
+        DB::table("tiket_pengaduan")->insert($data);
+        DB::table("tanggapan")->insert([
             'tanggapan' => '',
             'status'=> 'Pending',
             'lampiran'=> '',
-            'tiket_pengaduan_id'=> DB::table('tiket_pengaduan')->select('tiket_pengaduan.id')->latest('id')->first()->id,
+            'tiket_pengaduan_id'=> DB::table('tiket_pengaduan')->latest('id')->first()->id,
         ]);
 
-        return new APIResource(true, 'Penambahan Data Pengaduan Berhasil', [
-            [
-                'body' => $request->pengaduan,
-                'lampiran'=> $request->lampiran,
-                'pengadu_id'=> $request->pengadu_id,
-                'kategori_id'=> $request->kategori_id,
-            ]
-        ]);
+        return new APIResource(true, 'Penambahan Data Pengaduan Berhasil', $data);
     }
 
+    // ini buat nyari tanggapannya, nanti kalo buat ngeditnya
     public function ambilTanggapan($id)
     {
         $dataTanggapan = DB::table('tanggapan')->where('tanggapan.tiket_pengaduan_id', $id)
@@ -55,6 +73,7 @@ class APIController extends Controller
         return new APIResource(true,'Berhasil mendapatkan data', $dataTanggapan);
     }
 
+    // ini buat ngubah tanggapan
     public function ubahTanggapan($id, Request $request)
     {
         $before = DB::table('tanggapan')->where('id', $id)->get();
@@ -79,6 +98,7 @@ class APIController extends Controller
         ]);
     }
 
+    // ini buat pencarian pake nomor tiket
     public function cariTiket(Request $request){
         
         $dataTiket = DB::table('tiket_pengaduan')
@@ -92,6 +112,7 @@ class APIController extends Controller
         return new APIResource(true,'Berhasil mendapatkan data', $dataTiket);
     }
 
+    // ini buat pencarian pake nik
     public function cariPengadu(Request $request){
         $dataPengadu = DB::table('pengadu')
         ->rightJoin('tiket_pengaduan','pengadu.id','=','tiket_pengaduan.pengadu_id')
@@ -104,6 +125,7 @@ class APIController extends Controller
         return new APIResource(true,'Berhasil mendapatkan data', $dataPengadu);
     }
 
+    // ini buat nampilin semua data, buat di dashboard admin taro tabel
     public function tampilData(){
 
         $show = DB::table('tiket_pengaduan')
@@ -114,6 +136,22 @@ class APIController extends Controller
         ->get();
 
         return new APIResource(true,'Berhasil mendapatkan data', $show);
+    }
+
+    public function cekUser(Request $request){
+        if (DB::table('pengadu')->where('nik', $request->nik)->exists()) 
+        { // kalo udah, ambil id si user ini
+            return $this->userId = DB::table('pengadu')->where('nik',$request->nik)->first()->id;
+        }
+        else 
+        {  //kalo belom, bikin baru
+            DB::table('pengadu')->insert([
+                'name'=> $request->nama,
+                'nik' => $request->nik,
+                'no_wa' => $request->no_wa,
+            ]);
+            return $this->userId = DB::table('pengadu')->latest('id')->first()->id;
+        }
     }
 
 
