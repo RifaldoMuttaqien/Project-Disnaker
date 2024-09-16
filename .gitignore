@@ -5,6 +5,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/etiket-pengaduan
 .env
 .env.backup
 .env.production
