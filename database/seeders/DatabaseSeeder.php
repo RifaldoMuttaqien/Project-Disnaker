@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PengaduSeeder::class);
         $this->call(TiketPengaduanSeeder::class);
         $this->call(TanggapanSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

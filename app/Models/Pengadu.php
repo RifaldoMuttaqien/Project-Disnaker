@@ -9,7 +9,7 @@ class Pengadu extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengadu';
-    protected $fillabel = ['nik', 'name', 'no_wa'];
-    public $timestamps = false;
+    protected $table = 'pengadu'; 
+    protected $fillable = ['nik', 'name', 'no_wa']; 
+    public $timestamps = false; 
 }

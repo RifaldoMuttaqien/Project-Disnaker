@@ -1096,7 +1096,7 @@
     
         <img src="{{ url('https://www.jamilazzaini.com/wp-content/uploads/2016/04/question.jpg')}}" class="open-button" onclick="openForm()"alt="">
    <div class="form-popup" id="myForm">
-   <form action="{{ route('datapengaduan.store')}}" method="POST" enctype="multipart/form-data">
+   <form class="depan" action="{{ route('datapengaduan.store')}}" method="POST" enctype="multipart/form-data">
 
         @csrf
 

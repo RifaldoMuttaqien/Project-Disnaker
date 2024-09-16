@@ -25,6 +25,7 @@ Route::get('/semua_data', [APIController::class,'tampilData']);
 Route::get('/ambil_data/{id}', [APIController::class,'ambilTanggapan']);
 
 
+Route::post('/pengadu', [PengaduController::class, 'index']);
 Route::get('/pengadu', [PengaduController::class, 'index']);
 Route::get('/show_pengadu/{id}', [PengaduController::class, 'show']);
 Route::post('/create_pengadu', [PengaduController::class, 'store']);

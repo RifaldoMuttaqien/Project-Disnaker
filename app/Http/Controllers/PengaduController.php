@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\APIResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Pengadu;
 use Illuminate\Support\Facades\Validator;
 
 class PengaduController extends Controller
@@ -13,10 +14,13 @@ class PengaduController extends Controller
      */
     public function index()
     {
+        
         //menampilkan data
         $pengadu = DB::table('pengadu')->get();
-
+        return response()->json($pengadu);
         return new APIResource(true, 'Data Pengadu', $pengadu);
+      
+        
     }
 
     /**
