@@ -106,7 +106,7 @@ class APIController extends Controller
         ->join('kategori','tiket_pengaduan.kategori_id','=','kategori.id')
         ->join('tanggapan','tiket_pengaduan.id','=','tanggapan.tiket_pengaduan_id')
         ->select('tiket_pengaduan.*',  'pengadu.name as pengadu_id', 'pengadu.nik', 'pengadu.no_wa', 'kategori.kategori as kategori_id', 'tanggapan.tanggapan', 'tanggapan.status', 'tanggapan.lampiran as lampiran_tanggapan')
-        ->where('tiket_pengaduan.ticket', $request->tiket)
+        ->where('tiket_pengaduan.ticket', $request->ticket)
         ->get();
 
         return new APIResource(true,'Berhasil mendapatkan data', $dataTiket);

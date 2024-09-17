@@ -12,11 +12,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
-
-
-
-
 Route::post('/cek_user', [APIController::class, 'cekUser']);
 Route::post('/tambah_tiket', [APIController::class, 'pengaduanBaru']);
 Route::post('/update_tanggapan/{id}', [APIController::class, 'ubahTanggapan']);
