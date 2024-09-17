@@ -132,7 +132,7 @@ class APIController extends Controller
         ->leftJoin('pengadu','tiket_pengaduan.pengadu_id','=','pengadu.id')
         ->leftJoin('kategori','tiket_pengaduan.kategori_id','=','kategori.id')
         ->leftJoin('tanggapan','tiket_pengaduan.id','=','tanggapan.tiket_pengaduan_id')
-        ->select('tiket_pengaduan.*',  'pengadu.name as pengadu_id', 'kategori.kategori as kategori_id' , 'pengadu.nik', 'pengadu.no_wa')
+        ->select('tiket_pengaduan.*',  'pengadu.name as pengadu_id', 'kategori.kategori as kategori_id', 'tanggapan.status', 'tanggapan.tanggapan' , 'pengadu.nik', 'pengadu.no_wa')
         ->get();
 
         return new APIResource(true,'Berhasil mendapatkan data', $show);
