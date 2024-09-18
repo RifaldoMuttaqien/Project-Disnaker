@@ -13,5 +13,8 @@ class TiketPengaduan extends Model
     protected $fillable = ['body', 'ticket', 'lampiran','tgl_awal','tgl_akhir','kategori_id', 'pengadu_id'];
     public $timestamps = false;
 
-    
+    public function tanggapan()
+    {
+        return $this->hasOne(TiketPengaduan::class, 'tiket_pengaduan_id');
+    }
 }

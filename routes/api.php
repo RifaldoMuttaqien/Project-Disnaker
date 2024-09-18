@@ -16,9 +16,10 @@ Route::post('/cek_user', [APIController::class, 'cekUser']);
 Route::post('/tambah_tiket', [APIController::class, 'pengaduanBaru']);
 Route::post('/update_tanggapan/{id}', [APIController::class, 'ubahTanggapan']);
 Route::post('/cari_tiket', [APIController::class, 'cariTiket']);
-Route::post('/cari_user', [APIController::class, 'cariPengadu']);
+Route::get('/cari_user/{id}', [APIController::class, 'cariPengadu']);
 Route::get('/semua_data', [APIController::class,'tampilData']);
 Route::get('/ambil_data/{id}', [APIController::class,'ambilTanggapan']);
+Route::get('/cek_relasi/{id}', [APIController::class,'cekRelasi']);
 
 
 Route::get('/pengadu', [PengaduController::class, 'index']);

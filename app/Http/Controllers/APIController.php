@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengadu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\APIResource;
@@ -113,13 +114,13 @@ class APIController extends Controller
     }
 
     // ini buat pencarian pake nik
-    public function cariPengadu(Request $request){
+    public function cariPengadu($id){
         $dataPengadu = DB::table('pengadu')
+        ->where('pengadu.id', $id)
         ->rightJoin('tiket_pengaduan','pengadu.id','=','tiket_pengaduan.pengadu_id')
         ->join('tanggapan','tiket_pengaduan.id','=','tanggapan.tiket_pengaduan_id')
         ->join('kategori','tiket_pengaduan.kategori_id','=','kategori.id')
         ->select('pengadu.name', 'pengadu.nik', 'pengadu.no_wa', 'tiket_pengaduan.ticket', 'tiket_pengaduan.body as isi_pengaduan', 'tiket_pengaduan.lampiran as lampiran_pengaduan', 'tiket_pengaduan.tgl_awal', 'tiket_pengaduan.tgl_akhir', 'kategori.kategori as kategori_id', 'tanggapan.tanggapan', 'tanggapan.status', 'tanggapan.lampiran as lampiran_tanggapan')
-        ->where('pengadu.nik', $request->nik)
         ->get();
 
         return new APIResource(true,'Berhasil mendapatkan data', $dataPengadu);
@@ -138,20 +139,14 @@ class APIController extends Controller
         return new APIResource(true,'Berhasil mendapatkan data', $show);
     }
 
-    public function cekUser(Request $request){
-        if (DB::table('pengadu')->where('nik', $request->nik)->exists()) 
-        { // kalo udah, ambil id si user ini
-            return $this->userId = DB::table('pengadu')->where('nik',$request->nik)->first()->id;
-        }
-        else 
-        {  //kalo belom, bikin baru
-            DB::table('pengadu')->insert([
-                'name'=> $request->nama,
-                'nik' => $request->nik,
-                'no_wa' => $request->no_wa,
-            ]);
-            return $this->userId = DB::table('pengadu')->latest('id')->first()->id;
-        }
+    public function cekRelasi($id) {
+        $user = Pengadu::find($id);
+
+    if (!$user) {
+        return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+    }
+
+    return response()->json(['has_relation' => $user->has('tiketPengaduan')->exists()]);
     }
 
 

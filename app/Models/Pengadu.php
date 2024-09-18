@@ -12,4 +12,9 @@ class Pengadu extends Model
     protected $table = 'pengadu';
     protected $fillabel = ['nik', 'name', 'no_wa'];
     public $timestamps = false;
+
+    public function tiketPengaduan()
+    {
+        return $this->hasMany(TiketPengaduan::class, 'pengadu_id');
+    }
 }

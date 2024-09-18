@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Resources\APIResource;
-use Illuminate\Support\Facades\DB;
+use App\Models\Pengadu;
 use Illuminate\Http\Request;
+use App\Models\TiketPengaduan;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\APIResource;
 use Illuminate\Support\Facades\Validator;
 
 class PengaduController extends Controller
@@ -123,13 +125,26 @@ class PengaduController extends Controller
     public function destroy(string $id)
     {
         //
-        $willDelete = DB::table('pengadu')->where('id', $id)->get();
-        $delete = DB::table('pengadu')->where('id', $id)->delete();
+
+        DB::transaction(function () use ($id) {
+            // Delete related tanggapan rows first
+            TiketPengaduan::where('pengadu_id', $id)
+                ->whereHas('tanggapan', function ($query) use ($id) {
+                    $query->where('tiket_pengaduan_id', function ($subquery) use ($id) {
+                        $subquery->select('id')
+                            ->from('tiket_pengaduan')
+                            ->where('pengadu_id', $id);
+                    });
+                })
+                ->with('tanggapan') // Eager load tanggapan
+                ->delete();
+    
+            // Then delete tiket_pengaduan and pengadu
+            TiketPengaduan::where('pengadu_id', $id)->delete();
+            Pengadu::where('id', $id)->delete();
+        });
 
         return new APIResource(true,'Data Pengadu Dihapus', 
-        [
-            'Data yang Dihapus' => $willDelete,
-            'Status' => $delete
-        ]);
+        'Berhasil Dihapus');
     }
 }
