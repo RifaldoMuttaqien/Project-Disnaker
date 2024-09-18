@@ -120,7 +120,7 @@ class APIController extends Controller
         ->rightJoin('tiket_pengaduan','pengadu.id','=','tiket_pengaduan.pengadu_id')
         ->join('tanggapan','tiket_pengaduan.id','=','tanggapan.tiket_pengaduan_id')
         ->join('kategori','tiket_pengaduan.kategori_id','=','kategori.id')
-        ->select('pengadu.name', 'pengadu.nik', 'pengadu.no_wa', 'tiket_pengaduan.ticket', 'tiket_pengaduan.body as isi_pengaduan', 'tiket_pengaduan.lampiran as lampiran_pengaduan', 'tiket_pengaduan.tgl_awal', 'tiket_pengaduan.tgl_akhir', 'kategori.kategori as kategori_id', 'tanggapan.tanggapan', 'tanggapan.status', 'tanggapan.lampiran as lampiran_tanggapan')
+        ->select('pengadu.*', 'tiket_pengaduan.ticket', 'tiket_pengaduan.body as isi_pengaduan', 'tiket_pengaduan.lampiran as lampiran_pengaduan', 'tiket_pengaduan.tgl_awal', 'tiket_pengaduan.tgl_akhir', 'kategori.kategori as kategori_id', 'tanggapan.tanggapan', 'tanggapan.status', 'tanggapan.lampiran as lampiran_tanggapan')
         ->get();
 
         return new APIResource(true,'Berhasil mendapatkan data', $dataPengadu);
@@ -145,8 +145,8 @@ class APIController extends Controller
     if (!$user) {
         return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
     }
-
-    return response()->json(['has_relation' => $user->has('tiketPengaduan')->exists()]);
+    
+    return new APIResource(true,'', ['has_relation' => $user->has('tiketPengaduan')->exists()]);
     }
 
 

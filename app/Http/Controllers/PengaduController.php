@@ -125,26 +125,24 @@ class PengaduController extends Controller
     public function destroy(string $id)
     {
         //
-
-        DB::transaction(function () use ($id) {
             // Delete related tanggapan rows first
-            TiketPengaduan::where('pengadu_id', $id)
-                ->whereHas('tanggapan', function ($query) use ($id) {
-                    $query->where('tiket_pengaduan_id', function ($subquery) use ($id) {
-                        $subquery->select('id')
-                            ->from('tiket_pengaduan')
-                            ->where('pengadu_id', $id);
-                    });
-                })
-                ->with('tanggapan') // Eager load tanggapan
-                ->delete();
-    
-            // Then delete tiket_pengaduan and pengadu
-            TiketPengaduan::where('pengadu_id', $id)->delete();
-            Pengadu::where('id', $id)->delete();
-        });
+
+            $affectedTiket = DB::table('tiket_pengaduan')->where('pengadu_id', $id)->select('id')->get();
+
+            $affectedTiket->each(function ($item) {
+                $id = $item->id;
+
+                DB::table('tanggapan')->where('tiket_pengaduan_id', $id)->delete();
+
+            });
+
+            DB::table('tiket_pengaduan')->where('pengadu_id',$id)->delete();
+
+            DB::table('pengadu')->where('id',$id)->delete();
 
         return new APIResource(true,'Data Pengadu Dihapus', 
-        'Berhasil Dihapus');
+        [
+            'affectedRows'=> $affectedTiket,
+        ]);
     }
 }
